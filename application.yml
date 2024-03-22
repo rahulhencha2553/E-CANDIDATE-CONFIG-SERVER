@@ -1,0 +1,42 @@
+#EUREKA SERVER CONFIGURATION
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:7761/eureka
+  instance:
+    prefer-ip-address: true
+
+# DATABASE AND JPA CONFIGURATION
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: Java@2023
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+
+  kafka:
+    consumer:
+        bootstrap-servers: localhost:9092
+        key-deserializer: org.apache.kafka.common.serialization.StringDeSerializer
+        value-deserializer: org.apache.kafka.common.serialization.StringDeSerializer
+    producer:
+        bootstrap-servers: localhost:9092
+        key-serializer: org.apache.kafka.common.serialization.StringSerializer
+        value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+
+  # MULTIPART CONFIGURATION
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 1000MB
+      max-request-size: 100MB
+
